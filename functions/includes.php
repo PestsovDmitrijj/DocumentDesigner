@@ -4,6 +4,9 @@
 // ==================================================
 
 //to verify that the connection file
+
 include 'testInclude.php';
+include 'MyFunctions.php';
+
 
 ?>
