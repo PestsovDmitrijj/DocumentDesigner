@@ -71,6 +71,9 @@ require_once './classes/Auth.class.php';
 <script src="./js/ajax-form.js"></script>
 <script src="./js/js_scripts.js"></script>
 <script src="FunctionsForWebforms.js"></script>
+<script src="AutoComplete.js"></script>
+
+
 
 
 <body>
@@ -85,6 +88,12 @@ require_once './classes/Auth.class.php';
 				<li role="nav" class="active"><a href = 'cabinet.php'>Личный кабинет</a></li>
 			</ul>
     </form>
+	
+
+<form id="testComplete" name="testComplete">
+<button class="btn btn-large btn-primary" type="submit" onclick="funTestComplete()">Тест заполнения формы</button>
+
+
 <form method = "POST" action = "index1.php">
 <h1>Заголовочная таблица</h1>
 <hr>
@@ -95,7 +104,7 @@ require_once './classes/Auth.class.php';
               <h3 class="panel-title">Дата разработки</h3>
             </div>
             <div class="panel-body">
-              <input required style='width:100%' id = 'dateCreate' name = 'dateCreate' placeholder = 'дд.мм.гггг'>
+              <input type="date" required style='width:100%' id = 'dateCreate' name = 'dateCreate' placeholder = 'дд.мм.гггг'>
             </div>
          </div>
 	</div>
@@ -500,6 +509,9 @@ require_once './classes/Auth.class.php';
 </button>
 </form>
 </div>
+
+</form>	
+
 
 <?php else : header('Location: index.php'); ?>
 <?php endif; ?>

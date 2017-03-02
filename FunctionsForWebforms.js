@@ -178,12 +178,25 @@ $(document.body).ready(function(){
 	//===========================================
 	function addSod() {
 		numSod++;
-		var TD4 = "<tr id = 'razd"+numRazd+"Tem"+numTem+"Sod"+locNumSod+"'><td colspan = 1 style = 'background-color:#ffffff'></td>"
+		var TD4 = "<tr id = 'razd"+numRazd+"Tem"
+			+numTem+"Sod"+locNumSod+"'><td colspan = 1 style = 'background-color:#ffffff'></td>"
 			+"<td colspan = 1 style = 'background-color:#ffffff; text-align:right'>"+locNumSod+".</td>"
-			+"<td><input required id = 'contSod"+locNumSod+"Tem"+numTem+"Razd"+numRazd+"' name = 'contSod"+locNumSod+"Tem"+numTem+"Razd"+numRazd+"' style='width:100%' /></td>"
-			+"<td><input required id = 'hoursSod"+locNumSod+"Tem"+numTem+"Razd"+numRazd+"'  name = 'hoursSod"+locNumSod+"Tem"+numTem+"Razd"+numRazd+"' style='width:100%' /></td>"
-			+"<td><input required id = 'lvlSod"+locNumSod+"Tem"+numTem+"Razd"+numRazd+"' name = 'lvlSod"+locNumSod+"Tem"+numTem+"Razd"+numRazd+"' style='width:100%' /></td>"
-			+"<td><button id = 'remDef' type = button class = 'btn btn-danger' style = 'width:100%' onClick = rmTemPlan('default','razd"+numRazd+"Tem"+numTem+"Sod"+locNumSod+"','"+locNumTem+"')>"
+			+"<td><input required id = 'contSod"
+				+locNumSod+"Tem"+numTem+"Razd"+numRazd
+				+"' name = 'contSod"+locNumSod+"Tem"
+				+numTem+"Razd"+numRazd+"' style='width:100%' /></td>"
+			+"<td><input required id = 'hoursSod"
+				+locNumSod+"Tem"+numTem+"Razd"
+				+numRazd+"'  name = 'hoursSod"
+				+locNumSod+"Tem"+numTem+"Razd"
+				+numRazd+"' style='width:100%' /></td>"
+			+"<td><input required id = 'lvlSod"
+				+locNumSod+"Tem"+numTem+"Razd"
+				+numRazd+"' name = 'lvlSod"
+				+locNumSod+"Tem"+numTem+"Razd"
+				+numRazd+"' style='width:100%' /></td>"
+			+"<td><button id = 'remDef' type = button class = 'btn btn-danger' style = 'width:100%' onClick = rmTemPlan('default','razd"
+				+numRazd+"Tem"+numTem+"Sod"+locNumSod+"','"+locNumTem+"')>"
 			+ "<i class='fa fa-times' aria-hidden='true'></i></button></td></tr>";
 		$('#TemPlan').append(TD4);
 		//===========================================
