@@ -3,19 +3,14 @@ function twoNumbersFormat(date) {
 	return date;
 }
 
-function funTestComplete(){
+function fillingInTheDateField(idElement){
 	var date = new Date();
-	alert("1");
-	document.getElementById('dateCreate').value = 
+	document.getElementById(idElement).value = 
 		twoNumbersFormat(date.getFullYear()) + "-"
 		+ twoNumbersFormat(date.getMonth()+1) + "-"
 		+ twoNumbersFormat(date.getDate());
-
-	
-	//	obj.dateCreate.value = 11111111;
-		// "twoNumbersFormat(date.getDate())" 
-		// + "twoNumbersFormat(date.getMonth()+1)" 
-		// + "twoNumbersFormat(date.getFullYear())";
-	alert("2");
 }
 
+function fillingInTheTextField(idElement, message){
+	document.getElementById(idElement).value = message;
+}
