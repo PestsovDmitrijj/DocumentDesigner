@@ -1,9 +1,9 @@
-function twoNumbersFormat(date) {
+function twoNumbersFormat (date) {
 	if (date < 10) {date = "0" + date;}
 	return date;
 }
 
-function fillingInTheDateField(idElement){
+function setValueDateField (idElement) {
 	var date = new Date();
 	document.getElementById(idElement).value = 
 		twoNumbersFormat(date.getFullYear()) + "-"
@@ -11,6 +11,18 @@ function fillingInTheDateField(idElement){
 		+ twoNumbersFormat(date.getDate());
 }
 
-function fillingInTheTextField(idElement, message){
+function setValueTextField (idElement, message) {
 	document.getElementById(idElement).value = message;
+}
+
+function setValueSelectorField (idElement) {
+	alert( getElementById(idElement) );
+}
+
+function main () {
+	setValueTextField('numChange', 'message');
+	setValueDateField('dateCreate');
+	alert("1");
+	setValueSelectorField('specialty4');
+	alert("2");
 }

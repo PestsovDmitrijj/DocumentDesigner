@@ -91,7 +91,7 @@ require_once './classes/Auth.class.php';
 	
 
 <form id="testComplete" name="testComplete">
-<button class="btn btn-large btn-primary" type="submit" onclick="fillingInTheTextField('numChange', 'message')">Тест заполнения формы</button>
+<button class="btn btn-large btn-primary" type="submit" onclick="main()">Тест заполнения формы</button>
 
 
 <form method = "POST" action = "index1.php">
