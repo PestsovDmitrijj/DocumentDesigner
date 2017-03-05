@@ -26,12 +26,12 @@ include "FileReader.php";
 $tempobject = $testreader->charreader("testing.txt"); 
 print_r($tempobject); 
 print "<br>Charreader function done<br>"; 
-echo "<plaintext>";
+
 $tempobject = ""; 
-$tempobject = $testreader->chararrayreader("webform.php"); 
+$tempobject = $testreader->chararrayreader("testing.txt"); 
 var_dump($tempobject); 
 print "<br>Chararrayreader function done<br>"; 
-echo "</plaintext>";
+
 $tempobject = ""; 
 $tempobject = $testreader->arrayreader("testing.txt"); 
 print_r($tempobject); 
