@@ -90,10 +90,11 @@ require_once './classes/Auth.class.php';
 	<div class='row'>
 		<div class="form-actions">
 			<button class="btn btn-large btn-primary" type="submit">Выход</button>
+			<ul class="nav nav-pills">
+			<li role="nav" class="active"><a href = 'cabinet.php'>Личный кабинет</a></li>
+			</ul>
 		</div><br>
-		<ul class="nav nav-pills">
-		<li role="nav" class="active"><a href = 'cabinet.php'>Личный кабинет</a></li>
-		</ul>
+		
 	</div>
 </form>
 

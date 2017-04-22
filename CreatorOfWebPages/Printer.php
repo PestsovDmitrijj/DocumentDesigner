@@ -1,6 +1,7 @@
 <?php
 include 'Functions.php';
 
+
 	
 $fileName = "testRedactor.php";
 $title = "Редактор веб-страниц";
