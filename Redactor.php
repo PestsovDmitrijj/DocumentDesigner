@@ -1,3 +1,16 @@
+<?php
+
+if (!empty($_COOKIE['sid'])) {
+    // check session id in cookies
+    session_id($_COOKIE['sid']);
+}
+session_start();
+require_once './classes/Auth.class.php';
+
+
+include "./CreatorOfWebPages/Functions.php";
+
+?>
 <html>
 
 <head>
@@ -60,15 +73,7 @@
     
 	
 </style>
-<?php
 
-if (!empty($_COOKIE['sid'])) {
-    // check session id in cookies
-    session_id($_COOKIE['sid']);
-}
-session_start();
-require_once './classes/Auth.class.php';
-?>
 <?php if (Auth\User::isAuthorized()): ?>
 <script src="./vendor/jquery-2.0.3.min.js"></script>
 <script src="./vendor/jquery.json-1.3.js"></script>
@@ -97,12 +102,82 @@ require_once './classes/Auth.class.php';
 		
 	</div>
 </form>
+<form action="" method=POST>
+<div class="row"> 
+	<div class="col-md-6"> 
+		<div class="panel panel-primary"> 
+			<div class="panel-heading"> 
+				<h3 class="panel-title">Имя файла(example.php)</h3> 
+</div> 
+			<div class="panel-body"> 
+				<input  style='width:100%' type=text id ='filename' name ='filename'>
+				<input class="btn btn-large btn-primary" type=submit value='запомнить' name='remind' size=20 id="remind">		
+			</div> 
+		</div> 
+	</div> 
+</div>
 
-<form method="POST" action="/CreatorOfWebPages/Printer.php" >
-<button id = 'submit'  class = 'btn btn-lg btn-success' >
-	<i class="fa fa-file-text" aria-hidden="true"> Создать документ</i>
-</button>
+<input class="btn btn-large btn-primary" type=submit value='добавить шапку' name='add_head' size=20 id="add_head">
+<input class="btn btn-large btn-primary" type=submit value='добавить поле ввода <текст>' name='add_text' id="add_text">
+<input class="btn btn-large btn-primary" type=submit value='добавить поле ввода <дата>' name='add_date' id="add_date">
+<input class="btn btn-large btn-primary" type=submit value='добавить поле ввода <селектор>' name='add_selector' id="add_selector">
+<input class="btn btn-large btn-primary" type=submit value='добавить подвал' name='basement' id='basement'>
+
 </form>
+<hr>
+
+<?php 
+
+if( isset( $_POST['remind'] ) ) {
+	$fileName = $_POST['filename'];
+	echo $fileName;
+}
+
+if( isset( $_POST['add_head'] ) ) {
+	echo $fileName;
+	if ( file_exists($fileName) ) {
+		echo "<meta charset=utf-8><font size=5 color=red>Файл с таким именем уже существует!</font>";
+	} else {
+		echo "ВЫШЛО ЕЛСЕ";
+		echo $fileName;
+		$file = startCreateWebForm($fileName);
+	}
+}
+
+if( isset( $_POST['add_text'] ) ) {
+	$content = "<div class='row'><div class='col-md-6'>
+	<div class='panel panel-primary'><div class='panel-heading'>
+	<input required style='width:100%' type=text>
+	</div></div></div></div>";
+	addContent($file, $content);
+	echo $content;
+}
+
+if( isset( $_POST['add_date'] ) ) {
+	$content ="<div class='row'><div class='col-md-6'>
+	<div class='panel panel-primary'><div class='panel-heading'>
+	<input required style='width:100%' type=date>
+	</div></div></div></div>";
+	addContent($file, $content);
+	echo $content;
+}
+
+if( isset( $_POST['add_selector'] ) ) {
+	$content = "<div class='row'><div class='col-md-6'>
+	<div class='panel panel-primary'><div class='panel-heading'>
+	<select></select>
+	</div></div></div></div>";
+	addContent($file, $content);
+	echo $content;
+}
+
+if( isset( $_POST['basement'] ) ) {
+	endCreateWebForm($file);
+}
+
+echo $fileName;
+?>
+
 </div>
 
 
