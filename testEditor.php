@@ -1,6 +1,6 @@
 <html>
 	<head>
-		<title>FILEFILE.php</title>
+		<title>testEditor.php</title>
 		<meta charset = 'utf-8'>
 	</head>
 <body>
