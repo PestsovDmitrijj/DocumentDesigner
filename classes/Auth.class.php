@@ -12,7 +12,7 @@ class User
     private $db_host = "localhost";
     private $db_name = "Plan";
     private $db_user = "root";
-    private $db_pass = "root";
+    private $db_pass = "";
 
     private $is_authorized = false;
 	private $idRole = 0;

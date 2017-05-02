@@ -1,3 +1,4 @@
+<? session_start(); ?>
 <html>
 <head>
 	<title>Управление пользователями</title>
@@ -28,21 +29,30 @@
 		}
 	</style>
 </head>
+
 <script src="./vendor/jquery-2.0.3.min.js"></script>
+
 <script src="./vendor/jquery.json-1.3.js"></script>
+
 <script src="./vendor/bootstrap/js/bootstrap.min.js"></script>
+
 <script src="./js/ajax-form.js"></script>
+
 <script src="./js/js_scripts.js"></script>
 <body>
 <?php
+
 if (!empty($_COOKIE['sid'])) {
     // check session id in cookies
     session_id($_COOKIE['sid']);
 }
-session_start();
+
 require_once './classes/Auth.class.php';
+
 include_once './getData.php';
+
 ?>
+
 <?php if (Auth\User::isAuthorized()): ?>
 <?php if ($_SESSION['idRole']==1) : ?>
 <div class="container">

@@ -1,11 +1,20 @@
+<?session_start();?>
+<html>
+<title> Создание рабочей программы учебной дисциплины</title>
+<head><meta charset=utf8></head>
+<link rel="stylesheet" type="text/css" href="./vendor/bootstrap-3.3.6/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="./vendor/bootstrap-3.3.6/css/bootstrap-theme.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+<link rel="stylesheet" href="./vendor/pure-release-0.6.0/pure-min.css">
+<!--<link href="css/grid.css" rel="stylesheet">-->
 <html>
 <head>
-<title>Форма заполнения БД</title>
+<title>Форма просмотра БД</title>
 <meta charset=utf-8>
 </head>
 
 <?php 
-@$con=mysql_connect('localhost','root', 'root')
+@$con=mysql_connect('localhost','root', '')
   or die ("Ошибка". mysql_errno().":".mysql_error()."<br>");
 @mysql_select_db('Plan', $con)
   or die ("Ошибка". mysql_errno().":".mysql_error()."<br>");
@@ -51,6 +60,19 @@ function create_html_table($table_name){
 
 ?>
 <body>
+<h3>Вы авторизованы под учетной записью пользователя <?php echo $_SESSION['username']; ?>.</h3>
+
+<form class="ajax" method="post" action="./ajax.php">
+          <input type="hidden" name="act" value="logout">
+          <div class="form-actions">
+              <button class="btn btn-large btn-primary" type="submit">Выход</button>
+          </div><br>
+			<ul class="nav nav-pills">
+				<li role="nav" class="active"><a href = 'cabinet.php'>Личный кабинет</a></li>
+			</ul>
+    </form>
+<form method = "POST" action = "">
+
 <form method='POST' action="" name="form" id="form">
 <select name="input" id="input">
 	<?php
@@ -64,7 +86,7 @@ function create_html_table($table_name){
 		}
 	?>
 </select>
-<input type=submit name="sub" id="sub" value="Показать">
+<input type=submit  class="btn btn-large btn-primary" name="sub" id="sub" value="Показать">
 <?php
 if (isset($_POST['sub'])){
 	$input = $_POST['input'];
