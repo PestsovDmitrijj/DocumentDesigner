@@ -1,173 +1,17 @@
 <?php
-//function header_call(){
-//   header('Location:index.php');
-//}
-//header_call();
-$fileName = $_POST['specialty']." ".$_POST['disc']." ".$date.".odt";
-$fileName = rus2translit($fileName);
-header("Location:".$fileName);
-ini_set('display_errors',1);
-error_reporting(E_ALL);
-
-header('Content-Type: text/html; charset=utf-8, true');
-//===========================================
-// * За основу взята библиотека PHP-ODT (v0.3.3), 
-// * модифицированная для создания этого
-// * документа.
-// *
-// * LINK: http://php-odt.sourceforge.net/index.php;
-// * AUTHOR: author Issam RACHDI;
-//===========================================
-
-
-//===========================================
-// * Подключение библиотеки и необходимых функций
-//===========================================
-
-include_once ('./classes/phpodt-0.3.3/phpodt.php');
-include_once ('getData.php');
-require 'funcs.php'; 
-
-
-//===========================================
-// * Получаем специальность и дисциплину из веб-формы
-//===========================================
-$nameSpec = null;
-$nameDisc = null;
-
-
-//Функция трансляции
-function rus2translit($string) {
-    $converter = array(
-        'а' => 'a',   'б' => 'b',   'в' => 'v',
-        'г' => 'g',   'д' => 'd',   'е' => 'e',
-        'ё' => 'e',   'ж' => 'zh',  'з' => 'z',
-        'и' => 'i',   'й' => 'y',   'к' => 'k',
-        'л' => 'l',   'м' => 'm',   'н' => 'n',
-        'о' => 'o',   'п' => 'p',   'р' => 'r',
-        'с' => 's',   'т' => 't',   'у' => 'u',
-        'ф' => 'f',   'х' => 'h',   'ц' => 'c',
-        'ч' => 'ch',  'ш' => 'sh',  'щ' => 'sch',
-        'ь' => '\'',  'ы' => 'y',   'ъ' => '\'',
-        'э' => 'e',   'ю' => 'yu',  'я' => 'ya',
-        
-        'А' => 'A',   'Б' => 'B',   'В' => 'V',
-        'Г' => 'G',   'Д' => 'D',   'Е' => 'E',
-        'Ё' => 'E',   'Ж' => 'Zh',  'З' => 'Z',
-        'И' => 'I',   'Й' => 'Y',   'К' => 'K',
-        'Л' => 'L',   'М' => 'M',   'Н' => 'N',
-        'О' => 'O',   'П' => 'P',   'Р' => 'R',
-        'С' => 'S',   'Т' => 'T',   'У' => 'U',
-        'Ф' => 'F',   'Х' => 'H',   'Ц' => 'C',
-        'Ч' => 'Ch',  'Ш' => 'Sh',  'Щ' => 'Sch',
-        'Ь' => '\'',  'Ы' => 'Y',   'Ъ' => '\'',
-        'Э' => 'E',   'Ю' => 'Yu',  'Я' => 'Ya',
-    );
-    return strtr($string, $converter);
-}
-function str2url($str) {
-    // переводим в транслит
-    $str = rus2translit($str);
-    // в нижний регистр
-    $str = strtolower($str);
-    // заменям все ненужное нам на "-"
-    $str = preg_replace('~[^-a-z0-9_]+~u', '-', $str);
-    // удаляем начальные и конечные '-'
-    $str = trim($str, "-");
-    return $str;
-}
-
-if(isset($_POST['specialty'])){
-	$nameSpec = $_POST['specialty'];
-	//echo $nameSpec;
-}
-if(isset($_POST['disc'])){
-	$nameDisc = $_POST['disc'];
-	//echo $nameDisc;
-}
-
-//===========================================
-// * Получаем кол-во тем и разделов из веб-формы
-//===========================================
-
-$razdCount = null;
-//$temCount = null;
-if(isset($_POST['razdCount'])){
-	$razdCount = $_POST['razdCount'];
-}
-/*if(isset($_POST['temCount'])){
-$temCount = $_POST['temCount'];}*/
-
-
-//===========================================
-// * Немножко дебуга
-//===========================================
-
-if (($nameSpec == null) || ($nameSpec == 0))  {
-	echo '<p><font size="5" color="#FFA500" face="Arial">!</font>';
-	echo "Не задана специальность: (Будет использовано 'Наименование специальности').</p>";
-	$nameSpec = "Наименование специальности";
-}
-
-if (($nameDisc == null) || ($nameDisc === 0)) {
-	//echo $nameDisc;
-	echo '<p><font size="5" color="#FFA500" face="Arial">!</font>';
-	echo "Не задана дисциплина: (Будет использовано 'Наименование дисциплины').</p>";
-	$nameDisc = "Наименование дисциплины";
-}
+include 'configScriptDocument.php';
 
 //===========================================
 // * Запросы из БД на выборку шаблонного текста
 //===========================================
 
-$title = getTitleData();
-$content = getContentData();
-$subHeads = getSubHeadsData();
-$docContent = getDocContentData();
+$title = select_all("Title");
+$content = select_all("Contents");
+$subHeads = select_all("Subheads");
+$docContent = select_all("DocContent");
 
 //===========================================
 
-$odt = ODT::getInstance();
-
-global $pageStyle;
-
-//===========================================
-// * Создание стилей страницы. 
-// *
-// * master1 -- альбомная страница
-// * Standard -- базовый стиль, портретный
-// *
-// * Стиль, созданным последним, будет автоматически применён
-// * ко всему документу
-//===========================================
-
-$pageStyle2 = new PageStyle('layout7', 'master1', StyleConstants::LANDSCAPE, 'master1');
-$pageStyle1 = new PageStyle('layout1', 'Standard', StyleConstants::PORTRAIT, 'Standard');
-
-//===========================================
-
-//===========================================
-// * Стили параграфов, необходимые для "переворачивания"
-// * страницы из портретной в альбомную
-//===========================================
-
-$p1 = new ParagraphStyle('P1', 'Standard', 'master1');
-$p3 = new ParagraphStyle('P3', 'master1', 'Standard');
-
-//===========================================
-// * Сами параграфы. Таким образом: чтобы страница стала 
-// * альбомной, нужно в конце предыдущей страницы создать
-// * параграф со стилем $p1t
-//===========================================
-
-$p1t = new TextStyle('P1');
-$p3t = new TextStyle('P3');
-
-// $p2t = new TextStyle('P2');       
-// $p3t = new TextStyle('P3');       
-// $p2->setBreakBefore(StyleConstants::PAGE);
-$p1->setBreakBefore(StyleConstants::PAGE);
-$p3->setBreakBefore(StyleConstants::PAGE);
 
 //===========================================
 // * Таблица для заголовка
@@ -241,69 +85,7 @@ $pageStyle2->setHeaderContent($tableHeader);
 //===========================================
 
 
-//===========================================
-// * Описание стилей, используемых в документе
-//===========================================
-// * Жирный текст
-//===========================================
 
-$bolded = new TextStyle('bolded');
-$bolded->setBold();
-$bolded->setFontSize(14);
-
-//===========================================
-// * 14 кегль
-//===========================================
-
-$frt = new TextStyle('frtText');   
-$frt->setFontSize(14);    
-           
-//===========================================
-// * Текст по центру
-//===========================================
-
-$centeredText = new ParagraphStyle('centered', null, null);
-$centeredText->setTextAlign(StyleConstants::CENTER);
-
-//===========================================
-// * Текст слева
-//===========================================
-
-$leftText = new ParagraphStyle('left', null, null);
-$leftText->setTextAlign(StyleConstants::LEFT);
-
-//===========================================
-// * Текст справа
-//===========================================
-
-$rightText = new ParagraphStyle('right', null, null);
-$rightText->setTextAlign(StyleConstants::RIGHT);
-
-//===========================================
-//* Текст по ширине
-//===========================================
-
-$jstText = new ParagraphStyle('jstText', null, null);
-$jstText->setTextAlign(StyleConstants::JUSTIFY);
-$jstText->setTextIndent('1cm');
-
-//===========================================
-// KOSTYLIQUE
-//===========================================
-
-$jstText1 = new ParagraphStyle('Standard1', null, null);
-$jstText1->setTextAlign(StyleConstants::JUSTIFY);
-$jstText1->setTextIndent('1cm');
-
-//===========================================
-// * Разрыв страницы после текста
-//===========================================
-
-$withBreak = new ParagraphStyle('withBreak', null, null);
-$withBreak->setTextAlign(StyleConstants::CENTER);
-$withBreak->setBreakAfter(StyleConstants::PAGE);
-
-//===========================================
 
 addBlankLines(20);
 

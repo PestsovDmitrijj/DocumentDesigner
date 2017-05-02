@@ -1,4 +1,5 @@
 <?php
+include './functions/includes.php';
 //ini_set('display_errors',1);
 //error_reporting(E_ALL);
 
@@ -796,42 +797,8 @@ echoResponse();
 				break;
 		}
 	}
-//функции по выборке данных для шаблона рабочей программы
-	function getTitleData() {
-		global $db;
-		$res = $db->query("select * from Title;");
-		while ($row = $res->fetch_array()) {
-			$arr[] = $row[1];
-		}
-		return $arr;
-	}
 	
-	function getContentData() {
-		global $db;
-		$res = $db->query("select * from Contents;");
-		while ($row = $res->fetch_array()) {
-			$arr[] = $row[2];
-		}
-		return $arr;
-	}
 	
-	function getSubHeadsData() {
-		global $db;
-		$res = $db->query("select * from Subheads;");
-		while ($row = $res->fetch_array()) {
-			$arr[] = $row[2];
-		}
-		return $arr;
-	}
-	
-	function getDocContentData() {
-		global $db;
-		$res = $db->query("select * from DocContent;");
-		while ($row = $res->fetch_array()) {
-			$arr[] = $row[1];
-		}
-		return $arr;
-	}
 //Функции по выборке данных при загрузке страниц
 	function Spec_select() {
 		$data1 = "<option id = '0' value = 'empty' selected>--Выбрать специальность--</option>";

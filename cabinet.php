@@ -33,6 +33,7 @@ require_once './classes/Auth.class.php';
 		  
     </form>
 <?php if ($_SESSION['idRole']==1) : ?>
+<<<<<<< HEAD
 <div class="sidebar">
 <ul>
   <li role="nav" class="active"><a href='webform2.php'>Создать программу государственной итоговой аттестации по специальности</a></li>
@@ -47,6 +48,17 @@ require_once './classes/Auth.class.php';
 		<li role="nav"><a href='return.php'>Сменить пароль</a></li>
 	</ul>
 </div>
+=======
+<ul class="nav nav-pills nav-stacked">
+
+  <li role="nav" class="active"><a href='webform2.php'>Создать программу государственной итоговой аттестации по специальности</a></li>
+  <li role="nav" class="active"><a href='webform.php'>Создать рабочую программу учебных дисциплин или профессиональных модулей</a></li>
+  <li role="nav"><a href='Redactor.php'>Создать веб-страницу</a></li>
+  <li role="nav"><a href='tables.php'>Управление информацией из базы данных</a></li>
+  <li role="nav"><a href='datauser.php'>Управление пользователями</a></li>
+  <li role="nav"><a href='return.php'>Сменить пароль</a></li>
+</ul>
+>>>>>>> 902c4f9375d9f13da6d948893c8c1b7d96f81cb8
 <?php endif; ?>
 <?php if ($_SESSION['idRole']==2) : ?>
 <div class="sidebar">

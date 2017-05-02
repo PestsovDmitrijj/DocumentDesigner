@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <?php
 
 if (!empty($_COOKIE['sid'])) {
@@ -11,6 +12,8 @@ require_once './classes/Auth.class.php';
 include "./CreatorOfWebPages/Functions.php";
 
 ?>
+=======
+>>>>>>> 902c4f9375d9f13da6d948893c8c1b7d96f81cb8
 <html>
 
 <head>
@@ -73,7 +76,19 @@ include "./CreatorOfWebPages/Functions.php";
     
 	
 </style>
+<<<<<<< HEAD
 
+=======
+<?php
+
+if (!empty($_COOKIE['sid'])) {
+    // check session id in cookies
+    session_id($_COOKIE['sid']);
+}
+session_start();
+require_once './classes/Auth.class.php';
+?>
+>>>>>>> 902c4f9375d9f13da6d948893c8c1b7d96f81cb8
 <?php if (Auth\User::isAuthorized()): ?>
 <script src="./vendor/jquery-2.0.3.min.js"></script>
 <script src="./vendor/jquery.json-1.3.js"></script>
@@ -102,6 +117,7 @@ include "./CreatorOfWebPages/Functions.php";
 		
 	</div>
 </form>
+<<<<<<< HEAD
 <div class="row"> 
 	<div class="col-md-12"> 
 		<div class="panel panel-primary"> 
@@ -123,6 +139,8 @@ include "./CreatorOfWebPages/Functions.php";
 <br><br>
 
 
+=======
+>>>>>>> 902c4f9375d9f13da6d948893c8c1b7d96f81cb8
 
 <form method="POST" action="/CreatorOfWebPages/Printer.php" >
 <button id = 'submit'  class = 'btn btn-lg btn-success' >
