@@ -15,17 +15,17 @@ require_once './classes/Auth.class.php';
     <meta charset="utf-8">
     <title>Личный кабинет</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./vendor/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./vendor/bootstrap/css/bootstrap.css">
     <link rel="stylesheet" href="./css/style.css">
   </head>
   <body>
   <div id="head">
 <div id="header"></div>
 </div>
-    <div class="container">
+
 <?php if (Auth\User::isAuthorized()): ?>
- <h1>Добро пожаловать, <?php echo $_SESSION['username']; ?>! Это ваш личный кабинет.
- </h1>
+ 
+ 
  
   <form class="ajax" method="post" action="./ajax.php">
           <input type="hidden" name="act" value="logout">
@@ -33,22 +33,37 @@ require_once './classes/Auth.class.php';
 		  
     </form>
 <?php if ($_SESSION['idRole']==1) : ?>
-<<<<<<< HEAD
-<div class="sidebar">
-<ul>
-  <li role="nav" class="active"><a href='webform2.php'>Создать программу государственной итоговой аттестации по специальности</a></li>
-  <li role="nav" class="active"><a href='webform.php'>Создать рабочую программу учебных дисциплин или профессиональных модулей</a></li>
-  <li role="nav"><a href='Redactor.php'>Создать веб-страницу</a></li></ul>
-  </div>
-  <div class="buttons">
-	<ul>
-		<li role="nav"><a href='tables.php'>Управление информацией из базы данных</a></li>
-		<li role="nav"><a href='datauser.php'>Управление пользователями</a></li>
-		<li role="nav"><a href='view_database.php'>Просмотр базы данных</a></li>
-		<li role="nav"><a href='return.php'>Сменить пароль</a></li>
-	</ul>
-</div>
-=======
+
+<div class='navbar navbar-default navbar-fixed-top'>
+		<div class="btn-group">
+			<button id='settings' size=20% type="button" data-toggle="dropdown" class="btn btn-primary dropdown-toggle "> <img src='/css/img/menu.png'> <!--<span class="caret">--></span></button>
+					<ul class="dropdown-menu">
+							<li><a href="#">Управление информацией из базы данных</a></li>
+							<li><a href="#">Управление пользователями</a></li>
+							<li><a href="#">Просмотр базы данных</a></li>
+							<li><a href="#">Сменить пароль</a></li>
+							<li class="divider"></li>
+							<li><a href="#">Выход</a></li>
+					</ul>
+		</div>
+			<font color=white size=5> Добро пожаловать, <?php echo $_SESSION['username']; ?> </font>		
+	</div>
+	
+  <div id='content' class='container'>
+		<h3>Личный кабинет</h3>
+		<div class='row'>
+			
+			<div class='col'>
+					<ul class='nav nav-pills nav-stacked'>
+						<li role="nav" class="active"><a href='webform2.php'>Создать программу государственной итоговой аттестации по специальности</a></li>
+						<li role="nav" class="active"><a href='webform.php'>Создать рабочую программу учебных дисциплин или профессиональных модулей</a></li>
+						<li role="nav" class='active'><a href='Redactor.php'>Создать веб-страницу</a></li>
+					</ul>
+			</div>
+		</div>
+ </div> 
+
+<!--=======
 <ul class="nav nav-pills nav-stacked">
 
   <li role="nav" class="active"><a href='webform2.php'>Создать программу государственной итоговой аттестации по специальности</a></li>
@@ -58,27 +73,88 @@ require_once './classes/Auth.class.php';
   <li role="nav"><a href='datauser.php'>Управление пользователями</a></li>
   <li role="nav"><a href='return.php'>Сменить пароль</a></li>
 </ul>
->>>>>>> 902c4f9375d9f13da6d948893c8c1b7d96f81cb8
+>>>>>>> 902c4f9375d9f13da6d948893c8c1b7d96f81cb8 -->
 <?php endif; ?>
 <?php if ($_SESSION['idRole']==2) : ?>
-<div class="sidebar">
-<ul class="nav nav-pills nav-stacked">
-  <li role="nav" class="active"><a href='webform2.php'>Создать программу государственной итоговой аттестации по специальности</a></li>
-  <li role="nav" class="active"><a href='webform.php'>Создать рабочую программу учебных дисциплин или профессиональных модулей</a></li>
-  <li role="nav"><a href='Redactor.php'>Создать веб-страницу</a></li>
+	<div class='navbar navbar-default navbar-fixed-top'>
+		<div class="btn-group">
+			<button id='settings' size=20% type="button" data-toggle="dropdown" class="btn btn-primary dropdown-toggle "> <img src='/css/img/menu.png'></span></button> Добро пожаловать, <?php echo $_SESSION['username']; ?>! Это ваш личный кабинет.
+					<ul class="dropdown-menu">
+							<li><a href="#">Управление информацией из базы данных</a></li>
+							<li><a href="#">Управление пользователями</a></li>
+							<li><a href="#">Просмотр базы данных</a></li>
+							<li><a href="#">Сменить пароль</a></li>
+							<li class="divider"></li>
+							<li><a href="#">Выход</a></li>
+					</ul>
+		</div>
+					
+	</div>
+	
+  <div id='content' class='container'>
+	
+  
+  
+  
+		<h3> Добро пожаловать, <?php echo $_SESSION['username']; ?>! Это ваш личный кабинет.</h3>
+		<div class='row'>
+			<div class='col-sm-1 col-md-1 col-lg-1'>
+				
+				
+			</div>
+			<div class='col-sm-11 col-md-11 col-lg-11'>
+					<ul class='nav nav-pills nav-stacked'>
+						<li role="nav" class="active"><a href='webform2.php'>Создать программу государственной итоговой аттестации по специальности</a></li>
+						<li role="nav" class="active"><a href='webform.php'>Создать рабочую программу учебных дисциплин или профессиональных модулей</a></li>
+						<li role="nav" class='active'><a href='Redactor.php'>Создать веб-страницу</a></li>
+					</ul>
+		</div>
+  
+  
+  
   </div>
-  <li role="nav"><a href='tables.php'>Управление информацией из базы данных</a></li>
-  <li role="nav"><a href='return.php'>Сменить пароль</a></li>
-</ul>
+  
 <?php endif; ?>
 <?php if ($_SESSION['idRole']==3) : ?>
-<div class="sidebar">
-<ul class="nav nav-pills nav-stacked">
-  <li role="nav" class="active"><a href='webform2.php'>Создать программу государственной итоговой аттестации по специальности</a></li>
-  <li role="nav" class="active"><a href='webform.php'>Создать рабочую программу учебных дисциплин или профессиональных модулей</a></li> 
+	<div class='navbar navbar-default navbar-fixed-top'>
+		<div class="btn-group">
+			<button id='settings' size=20% type="button" data-toggle="dropdown" class="btn btn-primary dropdown-toggle "> <img src='/css/img/menu.png'></span></button> Добро пожаловать, <?php echo $_SESSION['username']; ?>! Это ваш личный кабинет.
+					
+					<ul class="dropdown-menu">
+							<li><a href="#">Управление информацией из базы данных</a></li>
+							<li><a href="#">Управление пользователями</a></li>
+							<li><a href="#">Просмотр базы данных</a></li>
+							<li><a href="#">Сменить пароль</a></li>
+							<li class="divider"></li>
+							<li><a href="#">Выход</a></li>
+					</ul>
+		</div>
+					
+	</div>
+	
+  <div id='content' class='container'>
+	
+  
+  
+  
+		<h3> Добро пожаловать, <?php echo $_SESSION['username']; ?>! Это ваш личный кабинет.</h3>
+		<div class='row'>
+			<div class='col-sm-1 col-md-1 col-lg-1'>
+				
+				
+			</div>
+			<div class='col-sm-11 col-md-11 col-lg-11'>
+					<ul class='nav nav-pills nav-stacked'>
+						<li role="nav" class="active"><a href='webform2.php'>Создать программу государственной итоговой аттестации по специальности</a></li>
+						<li role="nav" class="active"><a href='webform.php'>Создать рабочую программу учебных дисциплин или профессиональных модулей</a></li>
+						<li role="nav" class='active'><a href='Redactor.php'>Создать веб-страницу</a></li>
+					</ul>
+		</div>
+  
+  
+  
   </div>
-  <li role="nav"><a href='return.php'>Сменить пароль</a></li>
-</ul>
+  
 <?php endif; ?>
 <?php else : header('Location: index.php'); 
 //	header_call();
@@ -90,6 +166,6 @@ require_once './classes/Auth.class.php';
 <script src="./vendor/bootstrap/js/bootstrap.min.js"></script>
 <script src="./js/ajax-form.js"></script>
 <script src="./js/js_scripts.js"></script>
-<div class="form-actions"><button class="btn btn-large btn-primary" type="submit">Выход</button></div>
+
   </body>
 </html>
