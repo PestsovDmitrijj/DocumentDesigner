@@ -77,7 +77,7 @@ class SafeMySQL
 	private $defaults = array(
 		'host'      => 'localhost',
 		'user'      => 'root',
-		'pass'      => 'root',
+		'pass'      => '',
 		'db'        => 'Plan',
 		'port'      => NULL,
 		'socket'    => NULL,

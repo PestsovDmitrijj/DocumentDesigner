@@ -1,3 +1,4 @@
+<?session_start();?>
 <html>
 <title> Создание рабочей программы учебной дисциплины</title>
 <head><meta charset=utf8></head>
@@ -61,7 +62,7 @@ if (!empty($_COOKIE['sid'])) {
     // check session id in cookies
     session_id($_COOKIE['sid']);
 }
-session_start();
+
 require_once './classes/Auth.class.php';
 ?>
 <?php if (Auth\User::isAuthorized()): ?>
