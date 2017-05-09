@@ -8,22 +8,28 @@ class Input {
 	private $extend; //bool
 	private $required; //bool
 	
-	public function __construct( 
-		$type, $width, $head, $extend, $required )
+	public function __construct( $t, $w, $h, $e, $r )
 	{
 		
-		this->type 		= $type;
-		this->width	 	= $width;
-		this->head		= $head;
-		this->extend	= $extend;
-		this->required	= $required;
+		$this->type 		= $t;
+		$this->width	 	= $w;
+		$this->head			= $h;
+		$this->extend		= $e;
+		$this->required		= $r;
 		
 	}
 	
 	public function getWidth()
 	{
 		
-		return this->width;
+		return $this->width;
+		
+	}
+	
+	public function printMessage()
+	{
+		
+		echo $this->head;
 		
 	}
 	

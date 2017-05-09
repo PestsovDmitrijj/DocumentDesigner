@@ -2,14 +2,27 @@
 
 class Row {
 	
-	private $FreeWidth;
+	static private $FreeWidth = 12;
 	private $content;
-	private $input;
+	private $input = array(null);
 	
-	public function getInput( $input ) 
+	public function pushInput( $input ) 
 	{
 		
-		array_push( this->input, $input );
+		array_push( $this->input, $input );
+		echo $this->input;
+		
+	}
+	
+	public function printInputs()
+	{
+		
+		foreach( $this->input as $value )
+		{
+			
+			
+		
+		}
 		
 	}
 	
