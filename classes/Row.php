@@ -2,24 +2,38 @@
 
 class Row {
 	
-	static private $FreeWidth = 12;
+	private $FreeWidth;
 	private $content;
-	private $input;
+	private $input = array();
+	private $counter;
+	
+	public function __construct()
+	{
+		
+		$this->FreeWidth = 12;
+		$this->counter = 0;
+		
+	}
 	
 	public function pushInput( Input $input ) 
 	{
-		
-		$this->input = $input;
-		
+		if( $input->getWidth() <= $this->FreeWidth )
+		{
+			
+			array_push( $this->input, $input );
+			$this->counter += 1;
+			$this->FreeWidth -= $input->getWidth();
+			
+		} else {
+			echo "В строке недостаточно места.";
+		}
+		 
 	}
 	
 	public function printInputs()
 	{
-		
-		$this->input->printMessage();
-		$widnt = $this->input->getWidth();
-		echo "<br>" . $widnt;
-		
+		for( $i = 0; $i < $this->counter; $i++ ) 
+			echo $this->input[$i]->getHTMLCode();		
 	}
 	
 }
