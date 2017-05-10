@@ -4,25 +4,21 @@ class Row {
 	
 	static private $FreeWidth = 12;
 	private $content;
-	private $input = array(null);
+	private $input;
 	
-	public function pushInput( $input ) 
+	public function pushInput( Input $input ) 
 	{
 		
-		array_push( $this->input, $input );
-		echo $this->input;
+		$this->input = $input;
 		
 	}
 	
 	public function printInputs()
 	{
 		
-		foreach( $this->input as $value )
-		{
-			
-			
-		
-		}
+		$this->input->printMessage();
+		$widnt = $this->input->getWidth();
+		echo "<br>" . $widnt;
 		
 	}
 	
