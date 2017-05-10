@@ -106,7 +106,7 @@ require_once './classes/Auth.class.php';
 		<div class="panel panel-primary"> 
 			<div class="panel-heading"> 
 				<h3 class="panel-title">Имя файла(example.php)</h3> 
-</div> 
+			</div> 
 			<div class="panel-body"> 
 				<input  style='width:80%' type=text id ='filename' name ='filename'>
 				<input class="btn btn-large btn-primary" type=submit value='запомнить' name='remember' size=20 id="remember"
