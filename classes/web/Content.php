@@ -18,9 +18,9 @@ class Content {
 	
 	public function getHTMLCode()
 	{
-		$stringCode = "<p>";
-		$stringCode .= $this->text;
-		$stringCode .= "</p>";
+		$stringCode =		"<p>";
+		$stringCode .=		$this->text;
+		$stringCode .= 		"</p>";
 		
 		return $stringCode;
 	}
