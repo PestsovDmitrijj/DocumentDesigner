@@ -7,7 +7,7 @@ if (!empty($_COOKIE['sid'])) {
 session_start();
 require_once './classes/Auth.class.php';
 
-
+include './classes/web/webIncluder.php';
 
 ?>
 <html>
@@ -173,15 +173,15 @@ require_once './classes/Auth.class.php';
 // }
 
 
-// function remember() {
-	// $name = $_POST['filename'];
-	// return $name;
-// }
+function remember() {
+	$name = $_POST['filename'];
+	return $name;
+}
 
-// function getHiddName() {
-	// $name = $_POST['store_name'];
-	// return $name;
-// }
+function getHiddName() {
+	$name = $_POST['store_name'];
+	return $name;
+}
 
 // function getHidden() {
 	// $content = $_POST['store_page'];
@@ -205,17 +205,17 @@ require_once './classes/Auth.class.php';
 // }
 
 
-// if( isset( $_POST['remember'] ) ) {
-	// $name = remember();
-// }
+if( isset( $_POST['remember'] ) ) {
+	$name = remember();
+}
 
 
-// if( isset( $_POST['add'] ) ) {
-	// $name = getHiddName();
+if( isset( $_POST['add'] ) ) {
+	$name = getHiddName();
 	// $content = getHidden();
 	// $content = adding($content);
 	// recuperation($content);
-// }
+}
 
 // if( isset( $_POST['submit'] ) ) {
 	// $fileName = getHiddName();
@@ -248,6 +248,9 @@ require_once './classes/Auth.class.php';
 <hr>
 
 <?php
+
+echo "<h3><center>" . $_POST['store_name'] . "</center></h3>";
+
 include './classes/web/index.php';
 
 ?>
