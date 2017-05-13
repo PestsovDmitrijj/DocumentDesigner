@@ -19,12 +19,12 @@ class PanelBody {
 	public function getHTMLCode()
 	{
 		$this->counter;
-		$stringCode = "<div class='panel-body'>";
+		$stringCode = "<div class='panel-body'>\n";
 		
 		for( $i = 0; $i < $this->counter; $i++ )
-			$stringCode .= $this->content[$i];
+			$stringCode .= $this->content[$i] . "\n";
 			
-		$stringCode .= "</div>";
+		$stringCode .= "</div>\n";
 		
 		return $stringCode;
 	}

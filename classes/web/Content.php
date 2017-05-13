@@ -20,7 +20,7 @@ class Content {
 	{
 		$stringCode =		"<p>";
 		$stringCode .=		$this->text;
-		$stringCode .= 		"</p>";
+		$stringCode .= 		"</p>\n";
 		
 		return $stringCode;
 	}

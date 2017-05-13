@@ -11,9 +11,9 @@ class PanelHeading {
 	
 	public function getHTMLCode()
 	{
-		$stringCode = 	"<div class='panel-heading'>";
+		$stringCode = 	"<div class='panel-heading'>\n";
 		$stringCode .= 	"<h3 class='panel-title'>";
-		$stringCode .=	$this->title . "</h3></div>";
+		$stringCode .=	$this->title . "</h3>\n</div>\n";
 		
 		return $stringCode;
 	}

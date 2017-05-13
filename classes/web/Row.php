@@ -3,8 +3,7 @@
 class Row {
 	
 	private $FreeWidth;
-	private $content;
-	private $input = array();
+	private $col = array();
 	private $counter;
 	
 	public function __construct()
@@ -15,14 +14,14 @@ class Row {
 		
 	}
 	
-	public function pushInput( Input $input ) 
+	public function pushCol( Col $col ) 
 	{
-		if( $input->getWidth() <= $this->FreeWidth )
+		if( $col->getWidth() <= $this->FreeWidth )
 		{
 			
-			array_push( $this->input, $input );
+			array_push( $this->col, $col );
 			$this->counter += 1;
-			$this->FreeWidth -= $input->getWidth();
+			$this->FreeWidth -= $col->getWidth();
 			
 		} else {
 			echo "В строке недостаточно места.";
@@ -30,10 +29,16 @@ class Row {
 		 
 	}
 	
-	public function printInputs()
+	public function getHTMLCode()
 	{
+		$stringCode =	"<div class='row'>\n";
+		
 		for( $i = 0; $i < $this->counter; $i++ ) 
-			echo $this->input[$i]->getHTMLCode();		
+			$stringCode .= $this->col[$i]->getHTMLCode() . "";		
+		
+		$stringCode .=	"</div>\n";
+		
+		return $stringCode;
 	}
 	
 }

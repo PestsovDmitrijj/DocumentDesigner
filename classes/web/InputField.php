@@ -6,7 +6,7 @@ class InputField {
 	private $required; 	//bool
 	private $id;		//int or string value
 	private $value;		//string
-	private $style;		//range from 1 to 100 
+	private $style;		//range from 1 to 100 percents
 	
 	public function __construct( $type, $required, $id )
 	{
@@ -52,7 +52,7 @@ class InputField {
 		
 		$stringCode 	.= "id='";
 		$stringCode 	.= $this->id . "' ";
-		$stringCode 	.= ">";
+		$stringCode 	.= ">\n";
 		
 		return $stringCode;
 	}
