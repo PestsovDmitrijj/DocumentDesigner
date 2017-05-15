@@ -7,6 +7,17 @@ class InputField {
 	private $id;		//int or string value
 	private $value;		//string
 	private $style;		//range from 1 to 100 percents
+	private $propertyNames = array(
+	'type',
+	'required',
+	'id',
+	'value',
+	'style',
+	);
+	private $noDefaultMethods = array(
+	'setStyle',
+	'setValue',
+	);
 	
 	public function __construct( $type, $required, $id )
 	{
@@ -17,6 +28,16 @@ class InputField {
 		$this->style	= null;
 		$this->value	= null;
 		
+	}
+	
+	public function getProperties()
+	{
+		return $this->propertyNames;
+	}
+	
+	public function getNoDefaultMethods()
+	{
+		return $this->noDefaultMethods;
 	}
 	
 	public function setStyle( $style )

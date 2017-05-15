@@ -7,7 +7,11 @@ if (!empty($_COOKIE['sid'])) {
 session_start();
 require_once './classes/Auth.class.php';
 
-include './classes/web/webIncluder.php';
+include './classes/web/HTMLElements/includer.php';
+include './classes/web/WebController.php';
+include './classes/web/WebformReader.php';
+
+$controller = new WebController();
 
 ?>
 <html>
@@ -101,14 +105,15 @@ include './classes/web/webIncluder.php';
 	</div>
 </form>
 <form action="" method=POST id="add_field_input">
+
 <div class="row"> 
-	<div class="col-md-6"> 
+	<div class="col-md-4"> 
 		<div class="panel panel-primary"> 
 			<div class="panel-heading"> 
 				<h3 class="panel-title">Имя файла(example.php)</h3> 
 			</div> 
 			<div class="panel-body"> 
-				<input  style='width:80%' type=text id ='filename' name ='filename'>
+				<input  style='width:68%' type=text id ='filename' name ='filename'>
 				<input class="btn btn-large btn-primary" type=submit value='запомнить' name='remember' size=20 id="remember"
 					onclick="rememberName(add_field_input)">				
 			</div> 
@@ -116,7 +121,36 @@ include './classes/web/webIncluder.php';
 		</div> 
 		
 	</div> 
+		<div class="col-md-8"> 
+		<div class="panel panel-primary"> 
+			<div class="panel-heading"> 
+				<h3 class="panel-title">Панель редактирования веб-формы</h3> 
+			</div> 
+			<div class="panel-body"> 
+				<input class="btn btn-large btn-primary" type=submit value='Добавить раздел' name='add_Section' size=20 id="add_Section">
+				<input class="btn btn-large btn-primary" type=submit value='Добавить поле ввода' name='add_Input' size=20 id="add_Input">
+				<input class="btn btn-large btn-primary" type=submit value='Добавить текстовое окно' name='add_Content' size=20 id="add_Content">
+		<!--	<input class="btn btn-large btn-primary" type=submit value='Сохранить изменения' name='save' size=20 id="save">
+				<input class="btn btn-large btn-primary" type=submit value='не сохранять' name='do_not_save' size=20 id="do_not_save">
+			/-->
+			</div> 
+				
+		</div> 
+		
+	</div>
 </div>
+<?php
+if ( isset($_POST['add_Section']) ){
+	$controller->createForm( "InputField-text|InputField-submit" );
+}
+if ( isset($_POST['add_Input']) ){
+	
+}
+if ( isset($_POST['add_Content']) ){
+	
+}
+?>	
+<!--
 <div class="row"> 
 	<div class="col-md-8"> 
 		<div class="panel panel-primary"> 
@@ -136,7 +170,7 @@ include './classes/web/webIncluder.php';
 		
 	</div> 
 </div>
-
+/-->
 
 <?php
 
@@ -240,6 +274,7 @@ if( isset( $_POST['add'] ) ) {
 
 <input type=hidden name='store_name' id="store_name" value ='<? echo $name; ?>' >
 <input type=hidden name='store_page' id="store_page" value='<? echo $content; ?>'>
+<input type=hidden name='worksheetID' id="worksheetID" value='<? echo $worksheetID; ?>'>
 
 <input type=submit class="btn btn-large btn-primary" name='submit' id="submit" value ='Создать страницу' >
 
