@@ -1,7 +1,10 @@
 <?php
+include 'WebParser.php';
+include 'ConfigObjects.php';
 
 class WebController {
 	
+	//список подчиненных классов
 	private $sheetOfElements = array(
 		'Col',
 		'Content',
@@ -11,47 +14,28 @@ class WebController {
 		'PanelPrimary',
 		'Row',
 	);
-	private $classNames = array();
-	private $classProperties = array();
 	
-	private function parseString( $string )
+	private $parser;
+	
+	public function __construct()
 	{
-		$classes = explode( "|", $string );
-		
-		$i = 0;
-		foreach ( $classes as $exemplar ){
-			$separate = explode( ":", $exemplar );
-			$classNames[$i] 	= $separate[0];
-			$classValues[$i] 	= $separate[1];
-			$i++;
-			
-		}
-		
-		$this->classNames = $classNames;
-		
-		for( $i = 0; $i < count( $classValues ); $i++ ){
-			$bufferArray = explode( "-", $classValues[$i] );
-			for( $j = 0; $j < count( $bufferArray ); $j++ ){
-				$this->classProperties[$i][$j] 
-					= $bufferArray[$j];
-			}
-			
-		}
-		
+		$this->parser = new WebParser();
 	}
 	
 	public function createForm( $commandSrting )
 	{
-		$this->parseString( $commandSrting );
+		$this->parser->parseString( $commandSrting );
+		$this->parser->getResult();
 		
-		foreach( $this->classProperties as $name => $properties ){
-			echo $name . "<br>";
-			foreach( $properties as $value ){
-				echo $value . " ";
-			}
-			echo "<br>";
+	}
+	
+	public function create()
+	{
+		$obj = new $this->sheetOfElements[2]("text", false, "id");
+		$properties = $obj->getProperties();
+		foreach( $properties as $value ){
+			echo $value . "<br>";
 		}
-		
 	}
 	
 }

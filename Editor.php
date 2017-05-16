@@ -142,6 +142,7 @@ $controller = new WebController();
 <?php
 if ( isset($_POST['add_Section']) ){
 	$controller->createForm( "InputField:text-id|InputField:submit-true-id" );
+	$controller->create();
 }
 if ( isset($_POST['add_Input']) ){
 	
