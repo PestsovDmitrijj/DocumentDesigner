@@ -11,6 +11,8 @@ class WebController {
 		'PanelPrimary',
 		'Row',
 	);
+	private $classNames = array();
+	private $classProperties = array();
 	
 	private function parseString( $string )
 	{
@@ -24,34 +26,30 @@ class WebController {
 			$i++;
 			
 		}
-		foreach( $classNames as $values )
-			echo $values . "<br>";
-		foreach( $classValues as $values )
-			echo $values . "<br>";
-
-		for( $i = 0; $i < array_count_values($classNames); $i++ ){
-			
-			$config[$i]['class_name'] = $classNames[$i];
-			$config[$i]['class_properties'] = explode( "-", $classValues[$i] );
+		
+		$this->classNames = $classNames;
+		
+		for( $i = 0; $i < count( $classValues ); $i++ ){
+			$bufferArray = explode( "-", $classValues[$i] );
+			for( $j = 0; $j < count( $bufferArray ); $j++ ){
+				$this->classProperties[$i][$j] 
+					= $bufferArray[$j];
+			}
 			
 		}
 		
-		return $config;
 	}
 	
 	public function createForm( $commandSrting )
 	{
-		$config =  $this->parseString( $commandSrting );
-		for( $i = 0; $i < array_count_values( $config ); $i++ ){
-			echo $config[$i]['class_name'] . "<br>";
-			for( $j = 0;
-				$j < array_count_values( $config[$i]['class_properties'] );
-				$j++ )
-			{
-				
-				echo $config[$i]['class_properties'][$j] . " ";
-				
+		$this->parseString( $commandSrting );
+		
+		foreach( $this->classProperties as $name => $properties ){
+			echo $name . "<br>";
+			foreach( $properties as $value ){
+				echo $value . " ";
 			}
+			echo "<br>";
 		}
 		
 	}
