@@ -36,7 +36,7 @@ class Row {
 		for( $i = 0; $i < $this->counter; $i++ ) 
 			$stringCode .= $this->col[$i]->getHTMLCode() . "";		
 		
-		$stringCode .=	"</div>\n";
+		$stringCode .=	"Hey!</div>\n";
 		
 		return $stringCode;
 	}

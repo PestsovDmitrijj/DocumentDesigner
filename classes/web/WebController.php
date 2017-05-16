@@ -22,19 +22,31 @@ class WebController {
 		$this->parser = new WebParser();
 	}
 	
-	public function createForm( $commandSrting )
+	public function createObjects( $arrayNames )
 	{
-		$this->parser->parseString( $commandSrting );
-		$this->parser->getResult();
+		$i = 0;
+		foreach( $arrayNames as $value ){
+			foreach( $this->sheetOfElements as $controledObj ){
+				
+				if ( $value == $controledObj ){
+					$obj = new $controledObj();
+					$arrayObjects[$i] = $obj;
+					$i++;
+					break;
+				}
+				
+			}
+		}
 		
+		return $arrayObjects;
 	}
 	
-	public function create()
+	public function createForm( $commandSrting )
 	{
-		$obj = new $this->sheetOfElements[2]("text", false, "id");
-		$properties = $obj->getProperties();
-		foreach( $properties as $value ){
-			echo $value . "<br>";
+		$obj = $this->parser->parseConfigString( $commandSrting );
+		$arrayObjects = $this->createObjects( $obj->objNames );
+		foreach( $arrayObjects as $obj ){
+			echo $obj->getHTMLCode();
 		}
 	}
 	

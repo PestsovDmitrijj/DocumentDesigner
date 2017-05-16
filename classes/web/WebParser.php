@@ -2,17 +2,12 @@
 
 class WebParser{
 	
-	private $config;
-	private $classNames = array();
-	private $classProperties = array();
-	
-	public function __construct()
+	private $obj;
+
+	public function parseConfigString( $string )
 	{
-		$this->config = new ConfigObjects();
-	}
-	
-	public function parseString( $string )
-	{
+		$this->obj = new ConfigObjects();
+		
 		$classes = explode( "|", $string );
 		
 		$i = 0;
@@ -24,34 +19,21 @@ class WebParser{
 			
 		}
 		
-		$this->config->objNames = $classNames;
+		$this->obj->objNames = $classNames;
 		
 		for( $i = 0; $i < count( $classValues ); $i++ ){
 			$bufferArray = explode( "-", $classValues[$i] );
 			for( $j = 0; $j < count( $bufferArray ); $j++ ){
-				$this->config->objProperties[$i][$j] 
+				$this->obj->objProperties[$i][$j] 
 					= $bufferArray[$j];
 			}
 			
 		}
 		
+		return $this->obj;
 	}
 	
-	public function getResult()
-	{
-		foreach( $this->config->objProperties as $name => $properties ){
-			echo $name . "<br>";
-			foreach( $properties as $value ){
-				echo $value . " ";
-			}
-			echo "<br>";
-		}
-		
-		foreach( $this->config->objNames as $name ){
-			echo $name . " ";
-		}
-		
-	}
+	
 	
 }
 
