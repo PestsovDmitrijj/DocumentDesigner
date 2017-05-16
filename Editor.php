@@ -9,8 +9,15 @@ if (!empty($_COOKIE['sid'])) {
 session_start();
 require_once './classes/Auth.class.php';
 
+include './classes/web/HTMLElements/includer.php';
+include './classes/web/WebController.php';
+include './classes/web/WebformReader.php';
 
+<<<<<<< HEAD
 include "./Functions.php";
+=======
+$controller = new WebController();
+>>>>>>> Pestsov
 
 ?>
 <html>
@@ -104,14 +111,15 @@ include "./Functions.php";
 	</div>
 </form>
 <form action="" method=POST id="add_field_input">
+
 <div class="row"> 
-	<div class="col-md-6"> 
+	<div class="col-md-4"> 
 		<div class="panel panel-primary"> 
 			<div class="panel-heading"> 
 				<h3 class="panel-title">Имя файла(example.php)</h3> 
-</div> 
+			</div> 
 			<div class="panel-body"> 
-				<input  style='width:80%' type=text id ='filename' name ='filename'>
+				<input  style='width:68%' type=text id ='filename' name ='filename'>
 				<input class="btn btn-large btn-primary" type=submit value='запомнить' name='remember' size=20 id="remember"
 					onclick="rememberName(add_field_input)">				
 			</div> 
@@ -119,7 +127,36 @@ include "./Functions.php";
 		</div> 
 		
 	</div> 
+		<div class="col-md-8"> 
+		<div class="panel panel-primary"> 
+			<div class="panel-heading"> 
+				<h3 class="panel-title">Панель редактирования веб-формы</h3> 
+			</div> 
+			<div class="panel-body"> 
+				<input class="btn btn-large btn-primary" type=submit value='Добавить раздел' name='add_Section' size=20 id="add_Section">
+				<input class="btn btn-large btn-primary" type=submit value='Добавить поле ввода' name='add_Input' size=20 id="add_Input">
+				<input class="btn btn-large btn-primary" type=submit value='Добавить текстовое окно' name='add_Content' size=20 id="add_Content">
+		<!--	<input class="btn btn-large btn-primary" type=submit value='Сохранить изменения' name='save' size=20 id="save">
+				<input class="btn btn-large btn-primary" type=submit value='не сохранять' name='do_not_save' size=20 id="do_not_save">
+			/-->
+			</div> 
+				
+		</div> 
+		
+	</div>
 </div>
+<?php
+if ( isset($_POST['add_Section']) ){
+	$controller->createForm( "InputField:text-id|InputField:submit-true-id" );
+}
+if ( isset($_POST['add_Input']) ){
+	
+}
+if ( isset($_POST['add_Content']) ){
+	
+}
+?>	
+<!--
 <div class="row"> 
 	<div class="col-md-8"> 
 		<div class="panel panel-primary"> 
@@ -139,10 +176,11 @@ include "./Functions.php";
 		
 	</div> 
 </div>
-
+/-->
 
 <?php
 
+<<<<<<< HEAD
 function recuperation($content) {
 	$exp = explode( "~", $content );
 	$i = count($exp)-1;
@@ -190,11 +228,39 @@ function adding($file) {
 </div>
 </div>";
 	}
+=======
+// function recuperation($content) {
+	// $exp = explode( "~", $content );
+	// $i = count($exp)-1;
+	// $content = "";
+	// for ( $j=0; $j < $i; $j++ ){
+		// $sub_exp = explode( "|", $exp[$j] );
+		// $arr[$j]["name"] = $sub_exp[0];
+		// $arr[$j]["type"] = $sub_exp[1];
+		// $content .= "<div class='row'>
+// <div class='col-md-6'>
+// <div class='panel panel-primary'>
+// <div class='panel-heading'>		
+// <h3 class='panel-title'>".$arr[$j]["name"]."</h3>
+// </div>
+// <div class='panel-body'>";
+		// if( $arr[$j]["type"] == "select" ) {
+			// $content .= "<select></select>";
+		// } else {
+			// $content .= "<input type=".$arr[$j]["type"]." style='width:100%'>";
+		// }
+		// $content .= "
+// </div>
+// </div>
+// </div>
+// </div>";
+	// }
+>>>>>>> Pestsov
 	
-	echo $content;
-	return $content;
+	// echo $content;
+	// return $content;
 	
-}
+// }
 
 
 function remember() {
@@ -207,24 +273,25 @@ function getHiddName() {
 	return $name;
 }
 
-function getHidden() {
-	$content = $_POST['store_page'];
-	return $content;
-}
+// function getHidden() {
+	// $content = $_POST['store_page'];
+	// return $content;
+// }
 
-function adding($content) {
-	$inputname = $_POST['inputname'];
-	$type = $_POST['type'];
-	if( $type == 1 ){
-		$content = $content."$inputname|text~";
-	}
-	if( $type == 2 ){
-		$content = $content."$inputname|date~";
-	}
-	if( $type == 3 ){
-		$content = $content."$inputname|select~";
-	}
+// function adding($content) {
+	// $inputname = $_POST['inputname'];
+	// $type = $_POST['type'];
+	// if( $type == 1 ){
+		// $content = $content."$inputname|text~";
+	// }
+	// if( $type == 2 ){
+		// $content = $content."$inputname|date~";
+	// }
+	// if( $type == 3 ){
+		// $content = $content."$inputname|select~";
+	// }
 	
+<<<<<<< HEAD
 	if( $type == 2 ){
 		$content = $content."
 <div class='row'>
@@ -259,6 +326,10 @@ function adding($content) {
 	addContent($file, $content);
 	return $content;
 }
+=======
+	// return $content;
+// }
+>>>>>>> Pestsov
 
 
 if( isset( $_POST['remember'] ) ) {
@@ -273,28 +344,28 @@ if( isset( $_POST['remember'] ) ) {
 if( isset( $_POST['add'] ) ) {
 
 	$name = getHiddName();
-	$content = getHidden();
-	$content = adding($content);
-	recuperation($content);
+	// $content = getHidden();
+	// $content = adding($content);
+	// recuperation($content);
 }
 
-if( isset( $_POST['submit'] ) ) {
-	$fileName = getHiddName();
-	$hidd = getHidden();
+// if( isset( $_POST['submit'] ) ) {
+	// $fileName = getHiddName();
+	// $hidd = getHidden();
 	
-	if ( file_exists($fileName) ) {
-		echo "<meta charset=utf-8><font size=5 color=red>Файл с таким именем уже существует!</font>";
-	} else {
-		$file = startCreateWebForm($fileName);
+	// if ( file_exists($fileName) ) {
+		// echo "<meta charset=utf-8><font size=5 color=red>Файл с таким именем уже существует!</font>";
+	// } else {
+		// $file = startCreateWebForm($fileName);
 
 		
-		$content = recuperation($hidd);
-		addContent($file, $content);
+		// $content = recuperation($hidd);
+		// addContent($file, $content);
 
-		endCreateWebForm($file);
-		goToWebPage ($fileName);
-	}
-}
+		// endCreateWebForm($file);
+		// goToWebPage ($fileName);
+	// }
+// }
 
 	adding($file);
 }
@@ -307,6 +378,7 @@ if( isset( $_POST['submit'] ) ) {
 
 <input type=hidden name='store_name' id="store_name" value ='<? echo $name; ?>' >
 <input type=hidden name='store_page' id="store_page" value='<? echo $content; ?>'>
+<input type=hidden name='worksheetID' id="worksheetID" value='<? echo $worksheetID; ?>'>
 
 <input type=submit class="btn btn-large btn-primary" name='submit' id="submit" value ='Создать страницу' >
 
@@ -324,7 +396,13 @@ if( isset( $_POST['submit'] ) ) {
 
 <hr>
 
+<?php
 
+echo "<h3><center>" . $_POST['store_name'] . "</center></h3>";
+
+include './classes/web/index.php';
+
+?>
 
 </div>
 
