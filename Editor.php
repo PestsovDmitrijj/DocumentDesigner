@@ -1,7 +1,5 @@
 <?php
-
 include 'Functions.php';
-
 if (!empty($_COOKIE['sid'])) {
     // check session id in cookies
     session_id($_COOKIE['sid']);
@@ -13,11 +11,7 @@ include './classes/web/HTMLElements/includer.php';
 include './classes/web/WebController.php';
 include './classes/web/WebformReader.php';
 
-<<<<<<< HEAD
-include "./Functions.php";
-=======
 $controller = new WebController();
->>>>>>> Pestsov
 
 ?>
 <html>
@@ -180,55 +174,6 @@ if ( isset($_POST['add_Content']) ){
 
 <?php
 
-<<<<<<< HEAD
-function recuperation($content) {
-	$exp = explode( "~", $content );
-	$i = count($exp)-1;
-	$content = "";
-	for ( $j=0; $j < $i; $j++ ){
-		$sub_exp = explode( "|", $exp[$j] );
-		$arr[$j]["name"] = $sub_exp[0];
-		$arr[$j]["type"] = $sub_exp[1];
-		$content .= "<div class='row'>
-<div class='col-md-6'>
-<div class='panel panel-primary'>
-<div class='panel-heading'>		
-<h3 class='panel-title'>".$arr[$j]["name"]."</h3>
-</div>
-<div class='panel-body'>";
-		if( $arr[$j]["type"] == "select" ) {
-			$content .= "<select></select>";
-		} else {
-			$content .= "<input type=".$arr[$j]["type"]." style='width:100%'>";
-		}
-
-function remember() {
-	$name = $_POST['filename'];
-	$file = startCreateWebForm($name);
-	return $file;
-}
-
-function adding($file) {
-		$inputname = $_POST['inputname'];
-	$type = $_POST['type'];
-	$content = $_POST['store_page'];
-	if( $type == 1 ){
-		$content = $content."
-<div class='row'>
-<div class='col-md-6'>
-<div class='panel panel-primary'>
-<div class='panel-heading'>		
-<h3 class='panel-title'>".$inputname."</h3>
-</div>
-<div class='panel-body'>
-<input type=text>
-
-</div>
-</div>
-</div>
-</div>";
-	}
-=======
 // function recuperation($content) {
 	// $exp = explode( "~", $content );
 	// $i = count($exp)-1;
@@ -255,7 +200,6 @@ function adding($file) {
 // </div>
 // </div>";
 	// }
->>>>>>> Pestsov
 	
 	// echo $content;
 	// return $content;
@@ -291,58 +235,16 @@ function getHiddName() {
 		// $content = $content."$inputname|select~";
 	// }
 	
-<<<<<<< HEAD
-	if( $type == 2 ){
-		$content = $content."
-<div class='row'>
-<div class='col-md-6'>
-<div class='panel panel-primary'>
-<div class='panel-heading'>		
-<h3 class='panel-title'>".$inputname."</h3>
-</div>
-<div class='panel-body'>
-<input type=date>
-</div>
-</div>
-</div>
-</div>";
-	}
-	if( $type == 3 ){
-		$content = $content."
-<div class='row'>
-<div class='col-md-6'>
-<div class='panel panel-primary'>
-<div class='panel-heading'>		
-<h3 class='panel-title'>".$inputname."</h3>
-</div>
-<div class='panel-body'>
-<select></select>
-</div>
-</div>
-</div>
-</div>";
-	}
-	echo $content;	
-	addContent($file, $content);
-	return $content;
-}
-=======
 	// return $content;
 // }
->>>>>>> Pestsov
 
 
 if( isset( $_POST['remember'] ) ) {
-
 	$name = remember();
-
-	remember();
-
 }
 
 
 if( isset( $_POST['add'] ) ) {
-
 	$name = getHiddName();
 	// $content = getHidden();
 	// $content = adding($content);
@@ -367,12 +269,6 @@ if( isset( $_POST['add'] ) ) {
 	// }
 // }
 
-	adding($file);
-}
-
-
-
-
 
 ?>
 
@@ -382,16 +278,6 @@ if( isset( $_POST['add'] ) ) {
 
 <input type=submit class="btn btn-large btn-primary" name='submit' id="submit" value ='Создать страницу' >
 
-<input type=hidden name='restore_name' id="store_name" value ="<? echo $name; ?>" >
-<input type=hidden name='restore_page' id="store_page" value="<? echo $content; ?>">
-
-
-</form>
-
-<form action="./CreatorOfWebPages/Printer.php" method=POST>
-<button id = 'submit'  class = 'btn btn-lg btn-success' >
-	<i class="fa fa-file-text" aria-hidden="true"> Создать страницу</i>
-</button>
 </form>
 
 <hr>

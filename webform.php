@@ -1,4 +1,3 @@
-<?session_start();?>
 <html>
 <title> Создание рабочей программы учебной дисциплины</title>
 <head><meta charset=utf8></head>
@@ -8,24 +7,19 @@
 <link rel="stylesheet" href="./vendor/pure-release-0.6.0/pure-min.css">
 <!--<link href="css/grid.css" rel="stylesheet">-->
 <style>
-
 	th {
 		text-align: center;
 	}
-
 	.thTemPlan {
 		background-color: white;
 	}
-
 	.thEq {
 		width: 15%;
 	}
-
 	.eq {
 		width: 100%;
 		height: 100%;
 	}
-
 	.eqBut {
 		width: 10%;
 	}
@@ -34,7 +28,6 @@
 		text-align: center; 
 		font-size: 16px;
 	}
-
 	input {
 		text-align: center;
 	}
@@ -57,12 +50,11 @@
 	
 </style>
 <?php
-
 if (!empty($_COOKIE['sid'])) {
     // check session id in cookies
     session_id($_COOKIE['sid']);
 }
-
+session_start();
 require_once './classes/Auth.class.php';
 ?>
 <?php if (Auth\User::isAuthorized()): ?>
@@ -133,7 +125,6 @@ require_once './classes/Auth.class.php';
 
 <!--<div class = "well">
 	<p class = "headerText"> Укажите дату разработки документа и номер изменения, которые будут указаны в заголовочной таблице документа </p>
-
 <table align = center>
 <tr>
 	<td>Дата разработки: </td> 
@@ -150,8 +141,6 @@ require_once './classes/Auth.class.php';
 	<p class = "headerText"> Выберите специальность </p>
 	<select id = 'specialty4' name= "specialty" class = 'specclass' style='width: 100%; align: center'></select>
 </div>
-
-
 <div class = "well">
 	<p class = "headerText"> Выберите дисциплину </p>
 	<select id = 'SubjSpec' name = "disc" style="width: 100%; align: center" >
