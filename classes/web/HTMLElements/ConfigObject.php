@@ -11,7 +11,6 @@ class ConfigObject extends AbstractObject {
 	
 	protected $config = array(
 		'seniorObj',
-		'up',
 		'down'
 	);
 	

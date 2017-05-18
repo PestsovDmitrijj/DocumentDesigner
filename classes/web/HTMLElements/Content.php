@@ -12,7 +12,7 @@ class Content extends ConfigObject {
 	
 	protected $text;
 	protected $style;
-
+	
 
 	public function __construct(){
 		// default settings
