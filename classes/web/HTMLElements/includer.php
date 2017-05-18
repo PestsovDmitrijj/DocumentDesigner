@@ -1,5 +1,7 @@
 <?php
 
+include 'AbstractObject.php';
+include 'ConfigObject.php';
 include 'InputField.php';
 include 'Row.php';
 include 'Content.php';

@@ -150,63 +150,6 @@ if ( isset($_POST['add_Input']) ){
 if ( isset($_POST['add_Content']) ){
 	
 }
-?>	
-<!--
-<div class="row"> 
-	<div class="col-md-8"> 
-		<div class="panel panel-primary"> 
-			<div class="panel-heading"> 
-				<h3 class="panel-title">Добавление поля</h3> 
-</div> 
-			<div class="panel-body">
-				Введите название поля:	
-				<input  style='width:77%' type=text id ='inputname' name ='inputname'>
-				Тип принимаемого значения:
-				<input type=radio name="type" id="type" value=1>текст
-				<input type=radio name="type" id="type" value=2>дата
-				<input type=radio name="type" id="type" value=3>выпадающий список		
-			</div> 
-			<input class="btn btn-large btn-primary" type=submit value='Добавить' id="add" name="add">	
-		</div> 
-		
-	</div> 
-</div>
-/-->
-
-<?php
-
-// function recuperation($content) {
-	// $exp = explode( "~", $content );
-	// $i = count($exp)-1;
-	// $content = "";
-	// for ( $j=0; $j < $i; $j++ ){
-		// $sub_exp = explode( "|", $exp[$j] );
-		// $arr[$j]["name"] = $sub_exp[0];
-		// $arr[$j]["type"] = $sub_exp[1];
-		// $content .= "<div class='row'>
-// <div class='col-md-6'>
-// <div class='panel panel-primary'>
-// <div class='panel-heading'>		
-// <h3 class='panel-title'>".$arr[$j]["name"]."</h3>
-// </div>
-// <div class='panel-body'>";
-		// if( $arr[$j]["type"] == "select" ) {
-			// $content .= "<select></select>";
-		// } else {
-			// $content .= "<input type=".$arr[$j]["type"]." style='width:100%'>";
-		// }
-		// $content .= "
-// </div>
-// </div>
-// </div>
-// </div>";
-	// }
-	
-	// echo $content;
-	// return $content;
-	
-// }
-
 
 function remember() {
 	$name = $_POST['filename'];
@@ -218,28 +161,6 @@ function getHiddName() {
 	return $name;
 }
 
-// function getHidden() {
-	// $content = $_POST['store_page'];
-	// return $content;
-// }
-
-// function adding($content) {
-	// $inputname = $_POST['inputname'];
-	// $type = $_POST['type'];
-	// if( $type == 1 ){
-		// $content = $content."$inputname|text~";
-	// }
-	// if( $type == 2 ){
-		// $content = $content."$inputname|date~";
-	// }
-	// if( $type == 3 ){
-		// $content = $content."$inputname|select~";
-	// }
-	
-	// return $content;
-// }
-
-
 if( isset( $_POST['remember'] ) ) {
 	$name = remember();
 }
@@ -247,29 +168,7 @@ if( isset( $_POST['remember'] ) ) {
 
 if( isset( $_POST['add'] ) ) {
 	$name = getHiddName();
-	// $content = getHidden();
-	// $content = adding($content);
-	// recuperation($content);
 }
-
-// if( isset( $_POST['submit'] ) ) {
-	// $fileName = getHiddName();
-	// $hidd = getHidden();
-	
-	// if ( file_exists($fileName) ) {
-		// echo "<meta charset=utf-8><font size=5 color=red>Файл с таким именем уже существует!</font>";
-	// } else {
-		// $file = startCreateWebForm($fileName);
-
-		
-		// $content = recuperation($hidd);
-		// addContent($file, $content);
-
-		// endCreateWebForm($file);
-		// goToWebPage ($fileName);
-	// }
-// }
-
 
 ?>
 
@@ -286,8 +185,6 @@ if( isset( $_POST['add'] ) ) {
 <?php
 
 echo "<h3><center>" . $_POST['store_name'] . "</center></h3>";
-
-include './classes/web/index.php';
 
 ?>
 

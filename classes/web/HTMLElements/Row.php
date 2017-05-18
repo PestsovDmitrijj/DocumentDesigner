@@ -1,13 +1,23 @@
 <?php
 
-class Row {
+class Row extends ConfigObject {
 	
-	private $FreeWidth;
-	private $col = array();
-	private $counter;
+	protected $requiredFields = array();
+	protected $additionalFields = array(
+		
+	);
+
 	
-	public function __construct()
-	{
+	
+	protected $FreeWidth;
+	protected $col = array();
+	protected $counter;
+	
+	public function __construct(){
+		// default settings
+		$this->seniorObj	= null;		// string with name senior object's or null value
+		$this->down			= true;		// true if object has junior objects otherwise false
+		// end default settings
 		
 		$this->FreeWidth = 12;
 		$this->counter = 0;
@@ -16,27 +26,27 @@ class Row {
 	
 	public function pushCol( Col $col ) 
 	{
-		if( $col->getWidth() <= $this->FreeWidth )
+		if( $col->getProperty( 'width' ) <= $this->FreeWidth )
 		{
 			
 			array_push( $this->col, $col );
 			$this->counter += 1;
-			$this->FreeWidth -= $col->getWidth();
+			$this->FreeWidth -= $col->getProperty( 'width' );
 			
 		} else {
 			echo "В строке недостаточно места.";
 		}
 		 
 	}
-	
+
 	public function getHTMLCode()
 	{
-		$stringCode =	"<div class='row'>\n";
+		$stringCode =	"<div class='row'>" . "\n";
 		
 		for( $i = 0; $i < $this->counter; $i++ ) 
 			$stringCode .= $this->col[$i]->getHTMLCode() . "";		
 		
-		$stringCode .=	"Hey!</div>\n";
+		$stringCode .=	"</div>"  . "\n";
 		
 		return $stringCode;
 	}

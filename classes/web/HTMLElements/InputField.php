@@ -1,53 +1,30 @@
 <?php
 
-class InputField {
+class InputField extends ConfigObject {
 	
-	private $type; 		//string
-	private $required; 	//bool
-	private $id;		//int or string value
-	private $value;		//string
-	private $style;		//range from 1 to 100 percents
-	private $propertyNames = array(
-	'type',
-	'required',
-	'id',
-	'value',
-	'style',
+	protected $requiredFields = array(
+		'type',
+		'required',
+		'id'
 	);
-	private $noDefaultMethods = array(
-	'setStyle',
-	'setValue',
+	protected $additionalFields = array(
+		'value',
+		'style'
 	);
+
 	
-	public function __construct( $type, $required, $id )
-	{
-		
-		$this->type 	= $type;
-		$this->required	= $required;
-		$this->id 		= $id;
-		$this->style	= null;
-		$this->value	= null;
-		
-	}
+	protected $type; 		//string
+	protected $required; 	//bool
+	protected $id;			//int or string value
+	protected $value;		//string
+	protected $style;		//range from 1 to 100 percents
+
 	
-	public function getProperties()
-	{
-		return $this->propertyNames;
-	}
-	
-	public function getNoDefaultMethods()
-	{
-		return $this->noDefaultMethods;
-	}
-	
-	public function setStyle( $style )
-	{
-		$this->style = $style;
-	}
-	
-	public function setValue( $value )
-	{
-		$this->value = $value;
+	public function __construct(){
+		// default settings
+		$this->seniorObj	= 'PanelBody';	// string with name senior object's or null value
+		$this->down			= false;		// true if object has junior objects otherwise false
+		// end default settings
 	}
 	
 	public function getHTMLCode()
@@ -73,7 +50,7 @@ class InputField {
 		
 		$stringCode 	.= "id='";
 		$stringCode 	.= $this->id . "' ";
-		$stringCode 	.= ">\n";
+		$stringCode 	.= ">" . "\n";
 		
 		return $stringCode;
 	}
