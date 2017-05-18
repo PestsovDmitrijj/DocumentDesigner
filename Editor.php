@@ -7,9 +7,8 @@ if (!empty($_COOKIE['sid'])) {
 session_start();
 require_once './classes/Auth.class.php';
 
-include './classes/web/HTMLElements/includer.php';
-include './classes/web/WebController.php';
-include './classes/web/WebformReader.php';
+include './classes/web/includerWeb.php';
+include './classes/web/testElementController.php';
 
 $controller = new WebController();
 

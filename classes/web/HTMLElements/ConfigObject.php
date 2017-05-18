@@ -30,6 +30,7 @@ class ConfigObject extends AbstractObject {
 	}
 	*/
 	
+	public function __construct(){}
 	public function getHTMLCode(){}
 	
 }

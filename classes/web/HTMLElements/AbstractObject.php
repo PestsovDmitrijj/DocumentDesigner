@@ -2,6 +2,8 @@
 
 abstract class AbstractObject {
 	
+	abstract public function __construct();
+	
 	// точка входа в класс, единая для всех классов-потомков
 	public function connection()
 	{

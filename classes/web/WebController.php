@@ -1,6 +1,4 @@
 <?php
-include 'WebParser.php';
-include 'ConfigObjects.php';
 
 class WebController {
 	
@@ -15,7 +13,7 @@ class WebController {
 		'Row',
 	);
 	
-	private $parser;
+	protected $parser;
 	
 	public function __construct()
 	{
