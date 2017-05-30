@@ -8,7 +8,7 @@ session_start();
 require_once './classes/Auth.class.php';
 
 include './classes/web/includerWeb.php';
-include './classes/web/testElementController.php';
+//include './classes/web/testElementController.php';
 
 $controller = new WebController();
 
@@ -140,11 +140,10 @@ $controller = new WebController();
 </div>
 <?php
 if ( isset($_POST['add_Section']) ){
-	$controller->createForm( "Row:text-id|Row:submit-true-id" );
-	
+	$controller->createForm( "PanelHeading:Добавление раздела|InputField:submit-addSection|Col:6" );
 }
 if ( isset($_POST['add_Input']) ){
-	
+	$controller->createForm( "InputField:text-addInpFd|InputField:submit-addSection|Col:8" );
 }
 if ( isset($_POST['add_Content']) ){
 	

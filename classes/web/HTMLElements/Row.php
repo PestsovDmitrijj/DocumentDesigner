@@ -1,17 +1,21 @@
 <?php
 
-class Row extends ConfigObject {
+class Row extends ConfigContainer {
+	
+	protected $name = 'Row';
 	
 	protected $requiredFields = array();
 	protected $additionalFields = array(
 		
 	);
-
+	protected $arrayNames = array(
+		'content'
+	);
 	
 	
 	protected $FreeWidth;
-	protected $col = array();
-	protected $counter;
+	protected $content;
+	
 	
 	public function __construct(){
 		// default settings
@@ -20,31 +24,16 @@ class Row extends ConfigObject {
 		// end default settings
 		
 		$this->FreeWidth = 12;
-		$this->counter = 0;
+		$this->content = new Container();
 		
 	}
 	
-	public function pushCol( Col $col ) 
-	{
-		if( $col->getProperty( 'width' ) <= $this->FreeWidth )
-		{
-			
-			array_push( $this->col, $col );
-			$this->counter += 1;
-			$this->FreeWidth -= $col->getProperty( 'width' );
-			
-		} else {
-			echo "В строке недостаточно места.";
-		}
-		 
-	}
-
 	public function getHTMLCode()
 	{
 		$stringCode =	"<div class='row'>" . "\n";
 		
-		for( $i = 0; $i < $this->counter; $i++ ) 
-			$stringCode .= $this->col[$i]->getHTMLCode() . "";		
+		for( $i = 0; $i < $this->content->size(); $i++ ) 
+			$stringCode .= $this->content->pop($i) . "";		
 		
 		$stringCode .=	"</div>"  . "\n";
 		

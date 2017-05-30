@@ -1,10 +1,11 @@
 <?php
 
 class InputField extends ConfigObject {
-	
+
+	protected $name = 'InputField';
+
 	protected $requiredFields = array(
 		'type',
-		'required',
 		'id'
 	);
 	protected $additionalFields = array(
@@ -14,7 +15,7 @@ class InputField extends ConfigObject {
 
 	
 	protected $type; 		//string
-	protected $required; 	//bool
+//	protected $required; 	//bool
 	protected $id;			//int or string value
 	protected $value;		//string
 	protected $style;		//range from 1 to 100 percents
@@ -31,11 +32,14 @@ class InputField extends ConfigObject {
 	{
 		$stringCode 	 = "<input type='";
 		$stringCode		.= $this->type . "' ";
-		
+		if( $this->type == 'submit' ){
+			$stringCode	.= ' class="btn btn-large btn-primary" ';
+		}
+/*		
 		if( $this->required == true ){
 			$stringCode .= "required ";
 		}
-		
+*/		
 		if( $this->style != null )
 		{
 			$stringCode .= "style='width:";

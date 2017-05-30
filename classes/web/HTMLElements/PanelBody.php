@@ -1,16 +1,17 @@
 <?php
 
-class PanelBody extends ConfigObject {
+class PanelBody extends ConfigContainer {
+
+	protected $name = 'PanelBody';
 	
 	protected $requiredFields = null;
-	protected $additionalFields = array(
-		'counter'
+	protected $additionalFields = null;
+	protected $arrayNames = array(
+		'content'
 	);
-
 	
-	protected $content = array();
-	protected $counter;
-
+	protected $content;
+	
 	
 	public function __construct(){
 		// default settings
@@ -18,22 +19,15 @@ class PanelBody extends ConfigObject {
 		$this->down			= true;				// true if object has junior objects otherwise false
 		// end default settings
 		
-		$this->counter = 0;
+		$this->content = new Container();
 	}
-	
-	public function push( $content )
-	{
-		array_push( $this->content, $content );
-		$this->counter++;
-	}
-	
+
 	public function getHTMLCode()
 	{
-		$this->counter;
 		$stringCode = "<div class='panel-body'>" . "\n";
 		
-		for( $i = 0; $i < $this->counter; $i++ )
-			$stringCode .= $this->content[$i] . "\n";
+		for( $i = 0; $i < $this->content->size(); $i++ )
+			$stringCode .= $this->content->pop($i) . "\n";
 			
 		$stringCode .= "</div>" . "\n";
 		

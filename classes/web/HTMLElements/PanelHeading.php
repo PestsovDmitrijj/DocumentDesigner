@@ -2,6 +2,8 @@
 
 class PanelHeading extends ConfigObject {
 
+	protected $name = 'PanelHeading';
+
 	protected $requiredFields = array(
 		'title'
 	);

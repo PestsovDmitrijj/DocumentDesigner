@@ -2,6 +2,8 @@
 
 class Content extends ConfigObject {
 
+	protected $name = 'Content';
+
 	protected $requiredFields = array(
 		'text'
 	);
@@ -23,6 +25,7 @@ class Content extends ConfigObject {
 	
 	public function getHTMLCode()
 	{
+		
 		$stringCode =		"<p>";
 		$stringCode .=		$this->text;
 		$stringCode .= 		"</p>" . "\n";
